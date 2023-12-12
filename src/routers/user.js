@@ -23,8 +23,8 @@ router.post('/users', async (req, res) => {
     const user = new User(req.body)
     try {
         await user.save()
-        sendWelcomeEmail(user.email, user.name)
         const token = await user.genarateAuthToken()
+        sendWelcomeEmail(user.email, user.name)
         res.status(201).send({ user, token})
     } catch (error) {
         res.status(400).send(error)
@@ -68,7 +68,6 @@ router.post('/users/logoutAll', auth, async (req, res) => {
 
 router.get('/users/me', auth, (req, res) => {
     try {
-        console.log(req.user)
         res.send(req.user)
     } catch (error) {
         res.status(500).send({error : error.message})
