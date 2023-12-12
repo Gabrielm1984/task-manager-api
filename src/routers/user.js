@@ -24,7 +24,7 @@ router.post('/users', async (req, res) => {
     try {
         await user.save()
         const token = await user.genarateAuthToken()
-        sendWelcomeEmail(user.email, user.name)
+        //sendWelcomeEmail(user.email, user.name)
         res.status(201).send({ user, token})
     } catch (error) {
         res.status(400).send(error)
@@ -95,7 +95,7 @@ router.patch('/users/me', auth, async (req, res) => {
 router.delete('/users/me', auth, async (req, res) => {
     try {
         await User.deleteOne(req.user)
-        sendCancelationEmail(req.user.email, req.user.name)
+        //sendCancelationEmail(req.user.email, req.user.name)
         res.send(req.user)
     } catch (error) {
         res.status(500).send({error})
