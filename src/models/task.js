@@ -21,7 +21,6 @@ const taskSchema = new mongoose.Schema({
 
 taskSchema.pre('save', async function () {
     const task = this
-
 })
 
 const Task = mongoose.model('Task', taskSchema)
